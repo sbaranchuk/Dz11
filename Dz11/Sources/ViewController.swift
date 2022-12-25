@@ -49,6 +49,24 @@ class ViewController: UIViewController {
         return passwordTextField
     }()
 
+    private lazy var loginButton: UIButton = {
+        let loginButton = UIButton()
+        loginButton.setTitle("Login", for: .normal)
+        loginButton.setTitleColor(UIColor.white, for: .normal)
+        loginButton.titleLabel?.font = UIFont.systemFont(ofSize: 16, weight: .bold)
+        loginButton.backgroundColor = UIColor.systemBlue
+        loginButton.layer.cornerRadius = 20
+        loginButton.layer.borderColor = UIColor.systemBlue.cgColor
+
+        loginButton.layer.shadowColor = UIColor.black.cgColor
+        loginButton.layer.shadowOpacity = 0.3
+        loginButton.layer.shadowOffset = .zero
+        loginButton.layer.shadowRadius = 10
+        loginButton.layer.shouldRasterize = true
+        loginButton.layer.rasterizationScale = UIScreen.main.scale
+        return loginButton
+    }()
+
     // MARK: - LifeCycle
 
     override func viewDidLoad() {
@@ -70,6 +88,7 @@ class ViewController: UIViewController {
         view.addSubview(label)
         view.addSubview(loginTextField)
         view.addSubview(passwordTextField)
+        view.addSubview(loginButton)
     }
 
     private func setupLayout() {
@@ -94,6 +113,13 @@ class ViewController: UIViewController {
 
         passwordTextField.snp.makeConstraints { make in
             make.top.equalTo(loginTextField.snp.bottom).offset(20)
+            make.left.equalTo(view).offset(50)
+            make.right.equalTo(view).offset(-50)
+            make.height.equalTo(40)
+        }
+
+        loginButton.snp.makeConstraints { make in
+            make.top.equalTo(passwordTextField.snp.bottom).offset(40)
             make.left.equalTo(view).offset(50)
             make.right.equalTo(view).offset(-50)
             make.height.equalTo(40)
