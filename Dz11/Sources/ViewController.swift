@@ -26,6 +26,18 @@ class ViewController: UIViewController {
         return label
     }()
 
+    private lazy var loginTextField: UITextField = {
+        let loginTextField = UITextField()
+        loginTextField.textColor = UIColor.gray
+        loginTextField.font = UIFont.systemFont(ofSize: 16, weight: .bold)
+        loginTextField.placeholder = "keanureveese01"
+        loginTextField.backgroundColor = UIColor.white
+        loginTextField.layer.cornerRadius = 20
+        loginTextField.setLeftIcon(UIImage(named: "login-icon")!)
+        loginTextField.setRightIcon(UIImage(named: "ok-icon")!)
+        return loginTextField
+    }()
+
     // MARK: - LifeCycle
 
     override func viewDidLoad() {
@@ -45,6 +57,7 @@ class ViewController: UIViewController {
     private func setupHierarchy() {
         view.addSubview(image)
         view.addSubview(label)
+        view.addSubview(loginTextField)
     }
 
     private func setupLayout() {
@@ -60,9 +73,33 @@ class ViewController: UIViewController {
             make.centerX.equalTo(view)
         }
 
-    // MARK: - Extensions
-
-
+        loginTextField.snp.makeConstraints { make in
+            make.top.equalTo(label.snp.bottom).offset(40)
+            make.left.equalTo(view).offset(50)
+            make.right.equalTo(view).offset(-50)
+            make.height.equalTo(40)
+        }
+    }
 }
 
+// MARK: - Extensions
+
+extension UITextField {
+    func setLeftIcon(_ image: UIImage) {
+        let iconView = UIImageView(frame: CGRect(x: 25, y: 6, width: 20, height: 17))
+        iconView.image = image
+        let iconConteinerView: UIView = UIView(frame: CGRect(x: 20, y: 0, width: 55, height: 30))
+        iconConteinerView.addSubview(iconView)
+        leftView = iconConteinerView
+        leftViewMode = .always
+    }
+
+    func setRightIcon(_ image: UIImage) {
+        let iconView = UIImageView(frame: CGRect(x: 0, y: 5, width: 20, height: 20))
+        iconView.image = image
+        let iconConteinerView: UIView = UIView(frame: CGRect(x: 0, y: 0, width: 30, height: 30))
+        iconConteinerView.addSubview(iconView)
+        rightView = iconConteinerView
+        rightViewMode = .always
+    }
 }
