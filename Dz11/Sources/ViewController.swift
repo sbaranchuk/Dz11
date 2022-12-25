@@ -144,6 +144,31 @@ class ViewController: UIViewController {
         return facebookTwitterStackView
     }()
 
+    private lazy var dontHaveAccountLabel: UILabel = {
+        let dontHaveAccountLabel = UILabel()
+        dontHaveAccountLabel.text = "Dont have account?"
+        dontHaveAccountLabel.font = UIFont.systemFont(ofSize: 12, weight: .bold)
+        dontHaveAccountLabel.textColor = UIColor.systemGray
+        return dontHaveAccountLabel
+    }()
+
+    private lazy var signUpLabel: UILabel = {
+        let signUpLabel = UILabel()
+        signUpLabel.text = "Sign up"
+        signUpLabel.font = UIFont.systemFont(ofSize: 12, weight: .bold)
+        signUpLabel.textColor = UIColor.purple
+        return signUpLabel
+    }()
+
+    private lazy var offerToRegisterStack: UIStackView = {
+        let offerToRegisterStack = UIStackView()
+        offerToRegisterStack.axis = .horizontal
+        offerToRegisterStack.addArrangedSubview(dontHaveAccountLabel)
+        offerToRegisterStack.addArrangedSubview(signUpLabel)
+        offerToRegisterStack.spacing = 20
+        return offerToRegisterStack
+    }()
+
     // MARK: - LifeCycle
 
     override func viewDidLoad() {
@@ -173,6 +198,7 @@ class ViewController: UIViewController {
         view.addSubview(rightSeparatorView)
 
         view.addSubview(facebookTwitterStackView)
+        view.addSubview(offerToRegisterStack)
     }
 
     private func setupLayout() {
@@ -240,6 +266,12 @@ class ViewController: UIViewController {
             make.left.equalTo(view).offset(50)
             make.right.equalTo(view).offset(-50)
             make.height.equalTo(35)
+        }
+
+        offerToRegisterStack.snp.makeConstraints { make in
+            make.centerX.equalTo(view)
+            make.top.equalTo(facebookTwitterStackView.snp.bottom).offset(30)
+            make.bottomMargin.equalTo(-30)
         }
     }
 }
