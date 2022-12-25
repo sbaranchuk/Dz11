@@ -75,6 +75,28 @@ class ViewController: UIViewController {
         return forgotPasswordLabel
     }()
 
+    private lazy var leftSeparatorView: UIView = {
+        let leftSeparatorView = UIView()
+        leftSeparatorView.backgroundColor = UIColor.systemGray6
+        leftSeparatorView.layer.cornerRadius = 10
+        return leftSeparatorView
+    }()
+
+    private lazy var orConnectWithLabel: UILabel = {
+        let orConnectWithLabel = UILabel()
+        orConnectWithLabel.text = "or connect with"
+        orConnectWithLabel.textColor = UIColor.systemGray
+        orConnectWithLabel.font = UIFont.systemFont(ofSize: 12, weight: .bold)
+        return orConnectWithLabel
+    }()
+
+    private lazy var rightSeparatorView: UIView = {
+        let rightSeparatorView = UIView()
+        rightSeparatorView.backgroundColor = UIColor.systemGray6
+        rightSeparatorView.layer.cornerRadius = 10
+        return rightSeparatorView
+    }()
+
     // MARK: - LifeCycle
 
     override func viewDidLoad() {
@@ -98,6 +120,10 @@ class ViewController: UIViewController {
         view.addSubview(passwordTextField)
         view.addSubview(loginButton)
         view.addSubview(forgotPasswordLabel)
+
+        view.addSubview(leftSeparatorView)
+        view.addSubview(orConnectWithLabel)
+        view.addSubview(rightSeparatorView)
     }
 
     private func setupLayout() {
@@ -106,6 +132,7 @@ class ViewController: UIViewController {
             make.top.equalTo(view)
             make.left.equalTo(view)
             make.right.equalTo(view)
+            make.bottom.equalTo(leftSeparatorView.snp.top)
         }
 
         label.snp.makeConstraints { make in
@@ -133,11 +160,32 @@ class ViewController: UIViewController {
             make.right.equalTo(view).offset(-50)
             make.height.equalTo(40)
         }
-        
+
         forgotPasswordLabel.snp.makeConstraints { make in
             make.top.equalTo(loginButton.snp.bottom).offset(15)
             make.centerX.equalTo(view)
         }
+
+        leftSeparatorView.snp.makeConstraints { make in
+            make.top.equalTo(image.snp.bottom)
+            make.left.equalTo(view).offset(50)
+            make.height.equalTo(1)
+        }
+
+        orConnectWithLabel.snp.makeConstraints { make in
+            make.top.equalTo(image.snp.bottom).offset(-7)
+            make.left.equalTo(leftSeparatorView.snp.right).offset(10)
+            make.centerX.equalTo(view)
+        }
+
+        rightSeparatorView.snp.makeConstraints { make in
+            make.top.equalTo(image.snp.bottom)
+            make.left.equalTo(orConnectWithLabel.snp.right).offset(10)
+            make.right.equalTo(view).offset(-50)
+            make.height.equalTo(1)
+        }
+
+        
     }
 }
 
