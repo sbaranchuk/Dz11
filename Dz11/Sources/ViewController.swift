@@ -97,6 +97,53 @@ class ViewController: UIViewController {
         return rightSeparatorView
     }()
 
+    private lazy var facebookButton: UIButton = {
+        let facebookButton = UIButton(type: .custom)
+        var config = UIButton.Configuration.filled()
+        var color = UIColor(red: CGFloat(68.0 / 255.0), green: CGFloat(89.0 / 255.0), blue: CGFloat(148.0 / 255.0), alpha: 1.0)
+
+        config.image = UIImage(named: "facebook-icon")
+        config.imagePadding = 8
+        config.imagePlacement = .leading
+        config.cornerStyle = .capsule
+        config.baseBackgroundColor = color
+        config.background.strokeColor = color
+        config.titleAlignment = .center
+        facebookButton.configuration = config
+
+        facebookButton.setTitle("Facebook", for: .normal)
+        facebookButton.setTitleColor(UIColor.white, for: .normal)
+        return facebookButton
+    }()
+
+    private lazy var twitterButton: UIButton = {
+        let twitterButton = UIButton(type: .custom)
+        var config = UIButton.Configuration.filled()
+        var color = UIColor(red: CGFloat(79.0 / 255.0), green: CGFloat(171.0 / 255.0), blue: CGFloat(240.0 / 255.0), alpha: 1.0)
+
+        config.image = UIImage(named: "twitter-icon")
+        config.imagePadding = 8
+        config.imagePlacement = .leading
+        config.cornerStyle = .capsule
+        config.baseBackgroundColor = color
+        config.background.strokeColor = color
+        config.titleAlignment = .center
+        twitterButton.configuration = config
+
+        twitterButton.setTitle("Twitter", for: .normal)
+        twitterButton.setTitleColor(UIColor.white, for: .normal)
+        return twitterButton
+    }()
+
+    private lazy var facebookTwitterStackView: UIStackView = {
+        let facebookTwitterStackView = UIStackView()
+        facebookTwitterStackView.axis = .horizontal
+        facebookTwitterStackView.spacing = 20
+        facebookTwitterStackView.addArrangedSubview(facebookButton)
+        facebookTwitterStackView.addArrangedSubview(twitterButton)
+        return facebookTwitterStackView
+    }()
+
     // MARK: - LifeCycle
 
     override func viewDidLoad() {
@@ -124,6 +171,8 @@ class ViewController: UIViewController {
         view.addSubview(leftSeparatorView)
         view.addSubview(orConnectWithLabel)
         view.addSubview(rightSeparatorView)
+
+        view.addSubview(facebookTwitterStackView)
     }
 
     private func setupLayout() {
@@ -185,7 +234,13 @@ class ViewController: UIViewController {
             make.height.equalTo(1)
         }
 
-        
+        facebookTwitterStackView.snp.makeConstraints { make in
+            make.top.equalTo(leftSeparatorView.snp.bottom).offset(30)
+            make.centerX.equalTo(view)
+            make.left.equalTo(view).offset(50)
+            make.right.equalTo(view).offset(-50)
+            make.height.equalTo(35)
+        }
     }
 }
 
