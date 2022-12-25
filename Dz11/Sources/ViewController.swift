@@ -23,12 +23,32 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        setupView()
+        setupHierarchy()
+        setupLayout()
     }
 
     // MARK: - Setups
+
+    private func setupView() {
+        view.backgroundColor = .white
+    }
+
+    private func setupHierarchy() {
+        view.addSubview(image)
+    }
+
+    private func setupLayout() {
+
+        image.snp.makeConstraints { make in
+            make.top.equalTo(view)
+            make.left.equalTo(view)
+            make.right.equalTo(view)
+    }
 
     // MARK: - Extensions
 
 
 }
 
+}
