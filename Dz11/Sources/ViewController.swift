@@ -38,6 +38,17 @@ class ViewController: UIViewController {
         return loginTextField
     }()
 
+    private lazy var passwordTextField: UITextField = {
+        let passwordTextField = UITextField()
+        passwordTextField.textColor = UIColor.gray
+        passwordTextField.font = UIFont.systemFont(ofSize: 16, weight: .bold)
+        passwordTextField.placeholder = "Password"
+        passwordTextField.backgroundColor = UIColor.white
+        passwordTextField.layer.cornerRadius = 20
+        passwordTextField.setLeftIcon(UIImage(named: "password-icon")!)
+        return passwordTextField
+    }()
+
     // MARK: - LifeCycle
 
     override func viewDidLoad() {
@@ -58,6 +69,7 @@ class ViewController: UIViewController {
         view.addSubview(image)
         view.addSubview(label)
         view.addSubview(loginTextField)
+        view.addSubview(passwordTextField)
     }
 
     private func setupLayout() {
@@ -75,6 +87,13 @@ class ViewController: UIViewController {
 
         loginTextField.snp.makeConstraints { make in
             make.top.equalTo(label.snp.bottom).offset(40)
+            make.left.equalTo(view).offset(50)
+            make.right.equalTo(view).offset(-50)
+            make.height.equalTo(40)
+        }
+
+        passwordTextField.snp.makeConstraints { make in
+            make.top.equalTo(loginTextField.snp.bottom).offset(20)
             make.left.equalTo(view).offset(50)
             make.right.equalTo(view).offset(-50)
             make.height.equalTo(40)
