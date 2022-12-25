@@ -12,6 +12,12 @@ class ViewController: UIViewController {
 
     // MARK: - UI Elements
 
+    private lazy var image: UIImageView = {
+        let image = UIImage(named: "background-gradient")
+        let imageView = UIImageView(image: image)
+        return imageView
+    }()
+
     // MARK: - LifeCycle
 
     override func viewDidLoad() {
