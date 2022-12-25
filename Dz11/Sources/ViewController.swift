@@ -18,6 +18,14 @@ class ViewController: UIViewController {
         return imageView
     }()
 
+    private lazy var label: UILabel = {
+        let label = UILabel()
+        label.text = "Login"
+        label.textColor = UIColor.white
+        label.font = UIFont.systemFont(ofSize: 30, weight: .bold)
+        return label
+    }()
+
     // MARK: - LifeCycle
 
     override func viewDidLoad() {
@@ -36,6 +44,7 @@ class ViewController: UIViewController {
 
     private func setupHierarchy() {
         view.addSubview(image)
+        view.addSubview(label)
     }
 
     private func setupLayout() {
@@ -44,7 +53,12 @@ class ViewController: UIViewController {
             make.top.equalTo(view)
             make.left.equalTo(view)
             make.right.equalTo(view)
-    }
+        }
+
+        label.snp.makeConstraints { make in
+            make.top.equalTo(view).offset(70)
+            make.centerX.equalTo(view)
+        }
 
     // MARK: - Extensions
 
